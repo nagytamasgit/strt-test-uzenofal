@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Üzenőfal (Message Wall)
 
-## Getting Started
+Egyszerű üzenőfal alkalmazás — Next.js, Supabase, Tailwind CSS.
 
-First, run the development server:
+## Előfeltételek
+
+- Node.js 18+
+- Supabase projekt (ingyenes tier is megfelelő)
+
+## Telepítés
+
+### 1. Repo klónozása
+
+```bash
+git clone https://github.com/nagytamasgit/strt-test-uzenofal.git
+cd strt-test-uzenofal
+npm install
+```
+
+### 2. Supabase beállítása
+
+1. Hozz létre egy projektet a [Supabase](https://supabase.com) felületen
+2. Menj a **SQL Editor** menüpontra
+3. Futtasd le a `supabase-schema.sql` fájl tartalmát — ez létrehozza a `messages` táblát és az RLS policy-kat
+
+### 3. Környezeti változók
+
+```bash
+cp .env.local.example .env.local
+```
+
+Töltsd ki a `.env.local` fájlt a Supabase dashboard **Settings > API** menüjéből:
+
+- `NEXT_PUBLIC_SUPABASE_URL` — Project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — anon/public key
+
+### 4. Fejlesztői szerver indítása
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Nyisd meg: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Vercel Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Importáld a GitHub repót a [Vercel](https://vercel.com) felületen
+2. Add meg a környezeti változókat (ugyanazok mint `.env.local`-ban)
+3. Deploy — zero config, működik
 
-## Learn More
+## Technológiák
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 15** (App Router, TypeScript)
+- **Supabase** (PostgreSQL + RLS)
+- **Tailwind CSS v4**
+- **Vercel** (hosting)
